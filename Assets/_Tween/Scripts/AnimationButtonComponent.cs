@@ -1,5 +1,4 @@
 using DG.Tweening;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,9 +33,6 @@ namespace Tween
         {
             _button ??= GetComponent<Button>();
             _rectTransform ??= GetComponent<RectTransform>();
-
-            _originalButtonTransform = _rectTransform;
-
         }
 
 
@@ -64,16 +60,8 @@ namespace Tween
         [ContextMenu(nameof(StopAnimation))]
         private void StopAnimation()
         {
+            _tweenAnimation.Restart();
             _tweenAnimation?.Kill();
-            if (_tweenAnimation != null)
-            { GetOriginalButtonTransform(); }
-            _tweenAnimation = null;
         }
-
-        private void GetOriginalButtonTransform()
-        {
-           _rectTransform = _originalButtonTransform;
-        }
-
     }
 }
